@@ -1,0 +1,39 @@
+from sythesizer import synthesizer
+
+
+def test_synthesize_json_data():
+    data_types = {
+        "full_name": "name",
+        "user_email": "email",
+        "contact_number": "phone_number",
+        "home_address": "address",
+        "random_text": "text",
+        "age": "integer",
+        "salary": "float",
+        "is_active": "boolean",
+        "dob": "date",
+        "last_login": "datetime",
+        "unsupported_field": "unknown_type"
+    }
+    result = synthesizer.synthesize_json_data(data_types)
+
+    assert isinstance(result, dict), "Output should be a dictionary"
+
+    # Check if all keys exist in the output
+    for key in data_types.keys():
+        assert key in result, f"Missing expected key: {key}"
+
+    # Validate the generated data types
+    assert isinstance(result["full_name"], str) and len(result["full_name"]) > 0, "Name should be a valid string"
+    assert isinstance(result["user_email"], str) and "@" in result["user_email"], "Email should be valid"
+    assert isinstance(result["contact_number"], str) and len(
+        result["contact_number"]) > 0, "Phone number should be valid"
+    assert isinstance(result["home_address"], str) and len(result["home_address"]) > 0, "Address should be valid"
+    assert isinstance(result["random_text"], str) and len(result["random_text"]) > 0, "Text should be valid"
+    assert isinstance(result["age"], int) and 0 <= result["age"] <= 100, "Age should be an integer between 0 and 100"
+    assert isinstance(result["salary"], float) and 0 <= result["salary"] <= 100, "Salary should be a float within range"
+    assert isinstance(result["is_active"], bool), "Boolean field should be a boolean value"
+    assert isinstance(result["dob"], str), "Date should be a string in ISO format"
+    assert isinstance(result["last_login"], str), "Datetime should be a string in ISO format"
+    assert "Unsupported data type" in result["unsupported_field"], "Unsupported fields should return an error message"
+    print(result.items())

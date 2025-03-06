@@ -1,0 +1,6 @@
+faker
+pytest
+Pydbgen
+Mimesis
+DataSynthesizer
+#Trumania
