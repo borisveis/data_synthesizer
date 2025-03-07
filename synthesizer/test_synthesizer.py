@@ -1,4 +1,4 @@
-from sythesizer import synthesizer
+from synthesizer import synthesizer
 
 
 def test_synthesize_json_data():

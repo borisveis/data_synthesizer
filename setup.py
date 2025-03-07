@@ -9,6 +9,9 @@ setup(
         'Pydbgen'
         'Mimesis'
         'Trumania'
+        'pydantic'
+        'uvicorn'
+        'fastapi'
         'DataSynthesizer'
             ],
     author='Boris Veis',

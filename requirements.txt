@@ -1,6 +1,7 @@
 faker
 fastapi
 uvicorn
+pydantic
 pytest
 Pydbgen
 Mimesis
