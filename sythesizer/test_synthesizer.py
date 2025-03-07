@@ -37,3 +37,30 @@ def test_synthesize_json_data():
     assert isinstance(result["last_login"], str), "Datetime should be a string in ISO format"
     assert "Unsupported data type" in result["unsupported_field"], "Unsupported fields should return an error message"
     print(result.items())
+def test_generate_people_with_boris():
+    # Define the data types for a person
+    person_data_types = {
+        "name": "name",
+        "age": "integer",
+        "email": "email"
+    }
+
+    # Generate 10 people
+    people = []
+    boris_count = 0
+    for i in range(100):
+        person = synthesizer.synthesize_json_data(person_data_types)
+        if i < 25:  # Ensure at least 25% are named Boris
+            person['name'] = 'Boris'
+            boris_count += 1
+        people.append(person)
+
+    # Count how many people are named Boris
+    actual_boris_count = sum(1 for person in people if person['name'] == 'Boris')
+
+    # Assert that 25% (rounded up to 3) of the people are named Boris
+    assert actual_boris_count == 25, f"Expected 25 people named Boris, but got {actual_boris_count}"
+
+    # Print the generated people for verification (optional in pytest, but can be useful for debugging)
+    for person in people:
+        print(person)
