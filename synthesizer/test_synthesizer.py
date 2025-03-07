@@ -1,5 +1,28 @@
+import pytest
+from fastapi_app import app
 from synthesizer import synthesizer
 
+import uvicorn
+from multiprocessing import Process
+
+def run_server(host: str, port: int):
+    proc = Process(
+        target=uvicorn.run,
+        args=("main:app",),
+        kwargs={"host": host, "port": port}
+    )
+    proc.start()
+    return proc
+def shutdown_server(proc: Process):
+    proc.terminate()
+    proc.join(timeout=5)
+    if proc.is_alive():
+        proc.kill()
+@pytest.fixture(scope="session")
+def server():
+    proc = run_server("127.0.0.1", 8000)
+    yield proc
+    shutdown_server(proc)
 
 def test_synthesize_json_data():
     data_types = {
@@ -36,7 +59,7 @@ def test_synthesize_json_data():
     assert isinstance(result["dob"], str), "Date should be a string in ISO format"
     assert isinstance(result["last_login"], str), "Datetime should be a string in ISO format"
     assert "Unsupported data type" in result["unsupported_field"], "Unsupported fields should return an error message"
-    print(result.items())
+    # print(result.items())
 def test_generate_people_with_boris():
     # Define the data types for a person
     person_data_types = {
@@ -64,3 +87,13 @@ def test_generate_people_with_boris():
     # Print the generated people for verification (optional in pytest, but can be useful for debugging)
     for person in people:
         print(person)
+
+
+def test_root_endpoint():
+    from fastapi.testclient import TestClient
+    """
+    Test the root endpoint to confirm the server is running.
+    """
+    client = TestClient(app)
+    response = client.get("/")  # Send a GET request to the root endpoint
+    assert response.status_code == 200  # Assert that the status code is 200 (OK)

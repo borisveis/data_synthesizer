@@ -3,6 +3,7 @@ fastapi
 uvicorn
 pydantic
 pytest
+httpx
 Pydbgen
 Mimesis
 DataSynthesizer

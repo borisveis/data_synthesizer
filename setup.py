@@ -12,6 +12,7 @@ setup(
         'pydantic'
         'uvicorn'
         'fastapi'
+        'httpx'
         'DataSynthesizer'
             ],
     author='Boris Veis',
