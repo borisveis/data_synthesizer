@@ -24,7 +24,7 @@ async def root():
         "is_active": "boolean",
         "dob": "date",
         "last_login": "datetime",
-        "unsupported_field": "unknown_type"
+        # "unsupported_field": "unknown_type"
     }
     output = synthesize_json_data(default_data_types)
     return output

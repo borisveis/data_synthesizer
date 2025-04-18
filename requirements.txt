@@ -8,3 +8,4 @@ Pydbgen
 Mimesis
 DataSynthesizer
 #Trumania
+pytest-playwright
