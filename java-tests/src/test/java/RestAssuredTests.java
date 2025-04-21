@@ -1,9 +1,27 @@
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import java.io.IOException;
 
 public class RestAssuredTests {
+    private Process restapp;
+
+    @BeforeClass
+    void startApp() throws IOException, InterruptedException {
+        // String appPath="../../../../rest_api_app/fastapi_app.py";
+        String appPath="../../../../rest_api_app/fastapi_app.py";
+        restapp = new ProcessBuilder("python3", appPath).start();
+        Thread.sleep(2000); // wait for app start
+    }
+    @AfterClass
+    public void stopPythonApp() {
+        if (restapp != null) {
+            restapp.destroy();
+        }
+    }
 
     private final String baseUri = "http://0.0.0.0:8000";
 
