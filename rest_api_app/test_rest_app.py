@@ -1,6 +1,6 @@
 import pytest
 from rest_api_app.fastapi_app import app
-from synthesizer import synthesizer
+from data_synthesizer import synthesizer
 
 import uvicorn
 from multiprocessing import Process

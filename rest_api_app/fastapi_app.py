@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from synthesizer import synthesizer
+from data_synthesizer import synthesizer
 from pydantic import BaseModel
 from typing import Dict
 
@@ -9,7 +9,7 @@ class DataTypesRequest(BaseModel):
     data_types: Dict[str, str]
 
 def synthesize_json_data(data_types):
-    return synthesizer.synthesize_json_data(data_types)
+    return data_synthesizer.synthesize_json_data(data_types)
 
 @app.get("/")
 async def root():
