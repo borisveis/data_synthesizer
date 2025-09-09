@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name='synthesizer',
+    name='data_synthesizer',           # ← This should be data_synthesizer
     version='1.0.0',
-    packages=['data_synthesizer'],
+    packages=['data_synthesizer'],     # ← This should be data_synthesizer
     install_requires=[
         'faker',
         'fastapi',
@@ -12,8 +12,7 @@ setup(
         'httpx',
         'Pydbgen',
         'Mimesis',
-        # 'DataSynthesizer==0.1.13',  # Problematic package - see alternatives below
-        # 'Trumania'  # Commented out as it was in your requirements.txt
+        # 'DataSynthesizer==0.1.13',  # Commented out
     ],
     extras_require={
         'dev': [
