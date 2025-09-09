@@ -1,11 +1,1 @@
-faker
-fastapi
-uvicorn
-pydantic
-pytest
-httpx
-Pydbgen
-Mimesis
-DataSynthesizer
-#Trumania
-pytest-playwright
+-e .  # Install the package in editable mode

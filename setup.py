@@ -6,15 +6,22 @@ setup(
     packages=['synthesizer'],
     install_requires=[
         'faker',
-        'Pydbgen'
-        'Mimesis'
-        'Trumania'
-        'pydantic'
-        'uvicorn'
-        'fastapi'
-        'httpx'
-        'DataSynthesizer'
-            ],
+        'fastapi',
+        'uvicorn',
+        'pydantic',
+        'httpx',
+        'Pydbgen',
+        'Mimesis',
+        'DataSynthesizer',
+        # 'Trumania'  # Commented out as it was in your requirements.txt
+    ],
+    extras_require={
+        'dev': [
+            'pytest',
+            'pytest-playwright',
+        ]
+    },
     author='Boris Veis',
-    author_email='boris.veis@gmail.com'
+    author_email='boris.veis@gmail.com',
+    python_requires='>=3.7'
 )
