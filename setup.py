@@ -12,7 +12,7 @@ setup(
         'httpx',
         'Pydbgen',
         'Mimesis',
-        'DataSynthesizer',
+        # 'DataSynthesizer==0.1.13',  # Problematic package - see alternatives below
         # 'Trumania'  # Commented out as it was in your requirements.txt
     ],
     extras_require={
