@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='synthesizer',
     version='1.0.0',
-    packages=['synthesizer'],
+    packages=['data_synthesizer'],
     install_requires=[
         'faker',
         'fastapi',
